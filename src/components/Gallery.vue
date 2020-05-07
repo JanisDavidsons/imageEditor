@@ -19,6 +19,7 @@
       </template>
       <b-modal id="modal-1" size = "xl" title="Editor">
         <Editor :imgToEdit="imageToEdit" />
+
       </b-modal>
     </div>
   </div>

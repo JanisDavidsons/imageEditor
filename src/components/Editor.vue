@@ -26,7 +26,7 @@
       </vue-draggable-resizable>
     </div>
 
-    <div class="sliders">
+    <div class="editPanel">
       <div class="inputFields">
         <label for="textTop">Text top:</label>
         <input v-model="upperMessage" placeholder="Type text here" />
@@ -73,7 +73,11 @@
           :placeholder="imgToEdit.name"
         />
       </div>
-      <button type="button" class="btn btn-success" @click="saveImage(saveName)">
+      <button
+        type="button"
+        class="btn btn-success"
+        @click="saveImage(saveName)"
+      >
         Download
       </button>
     </div>
@@ -92,23 +96,18 @@ export default {
       lowerMessage: "",
       upperFontSize: "",
       lowerFontSize: "",
-      saveName: ""
+      saveName: "",
     };
   },
   created() {
-    this.saveName = this.imgToEdit.name
+    this.saveName = this.imgToEdit.name;
   },
   methods: {
     saveImage: function(saveName) {
       const node = document.getElementById("imageToSave");
-      saveAsJpeg(node, {  filename: saveName, printDate: false });
+      saveAsJpeg(node, { filename: saveName, printDate: false });
     },
-    onResize: function(x, y, width, height) {
-      this.x = x;
-      this.y = y;
-      this.width = width;
-      this.height = height;
-    },
+
     onDrag: function(x, y) {
       this.x = x;
       this.y = y;
@@ -130,11 +129,10 @@ export default {
   left: 0;
   top: 0;
   width: 50%;
-  height: 100%;
 }
 
 .ImageToEdit {
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
 }
 
@@ -143,19 +141,20 @@ export default {
   color: black;
   position: absolute;
   font-weight: bold;
-  margin: 0 0 0 50px;
+  margin-left: 50px;
 }
 
 .upperText {
+  margin-top: -150px;
   font-size: 40px;
 }
 
 .lowerText {
   font-size: 40px;
-  margin-top: 250px;
+  margin-top: -50px;
 }
 
-.sliders {
+.editPanel {
   flex-grow: 1;
 }
 
@@ -174,7 +173,7 @@ export default {
   flex-grow: 1;
 }
 
-.test {
+/* .test {
   font-size: 40px;
   margin: -350px 0 0 0;
   color: black;
@@ -183,5 +182,16 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+} */
+
+.modal-dialog {
+  max-width: 100%;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
 }
 </style>

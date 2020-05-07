@@ -1,4 +1,4 @@
-# excercise_3
+# Image editor
 
 ## Project setup
 ```

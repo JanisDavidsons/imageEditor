@@ -70,7 +70,7 @@
           v-model="saveName"
           id="save"
           name="save"
-          placeholder="one-does-not-simply"
+          :placeholder="imgToEdit.name"
         />
       </div>
       <button type="button" class="btn btn-success" @click="saveImage(saveName)">
@@ -95,7 +95,9 @@ export default {
       saveName: ""
     };
   },
-  created() {},
+  created() {
+    this.saveName = this.imgToEdit.name
+  },
   methods: {
     saveImage: function(saveName) {
       const node = document.getElementById("imageToSave");

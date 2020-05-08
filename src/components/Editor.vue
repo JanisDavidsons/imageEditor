@@ -7,23 +7,23 @@
         class="ImageToEdit"
       />
 
-      <vue-draggable-resizable
-        class-name="upperText"
-        w="auto"
-        h="auto"
-        v-bind:style="{ fontSize: upperFontSize + 'px' }"
-      >
-        {{ upperMessage }}
-      </vue-draggable-resizable>
+      <drag-it-dude>
+        <div
+          class="upperText"
+          v-bind:style="{ fontSize: upperFontSize + 'px' }"
+        >
+          {{ upperMessage }}
+        </div>
+      </drag-it-dude>
 
-      <vue-draggable-resizable
-        class-name="lowerText"
-        w="auto"
-        h="auto"
-        v-bind:style="{ fontSize: lowerFontSize + 'px' }"
-      >
-        {{ lowerMessage }}
-      </vue-draggable-resizable>
+      <drag-it-dude class="lowerMsgContainer">
+        <div
+          class="lowerText"
+          v-bind:style="{ fontSize: lowerFontSize + 'px' }"
+        >
+          {{ lowerMessage }}
+        </div>
+      </drag-it-dude>
     </div>
 
     <div class="editPanel">
@@ -86,9 +86,13 @@
 
 <script>
 import { saveAsJpeg } from "save-html-as-image";
+import DragItDude from "vue-drag-it-dude";
 
 export default {
   name: "Editor",
+  components: {
+    DragItDude,
+  },
   props: { imgToEdit: { type: Object } },
   data() {
     return {
@@ -106,11 +110,6 @@ export default {
     saveImage: function(saveName) {
       const node = document.getElementById("imageToSave");
       saveAsJpeg(node, { filename: saveName, printDate: false });
-    },
-
-    onDrag: function(x, y) {
-      this.x = x;
-      this.y = y;
     },
   },
 };
@@ -132,26 +131,25 @@ export default {
 }
 
 .ImageToEdit {
-  /* position: absolute; */
   width: 100%;
 }
 
 .upperText,
 .lowerText {
   color: black;
-  position: absolute;
   font-weight: bold;
-  margin-left: 50px;
 }
 
 .upperText {
-  margin-top: -150px;
   font-size: 40px;
 }
 
 .lowerText {
   font-size: 40px;
-  margin-top: -50px;
+}
+
+.lowerMsgContainer {
+  padding-top: 30px;
 }
 
 .editPanel {
@@ -171,27 +169,5 @@ export default {
   margin: 20px 0;
   width: 100%;
   flex-grow: 1;
-}
-
-/* .test {
-  font-size: 40px;
-  margin: -350px 0 0 0;
-  color: black;
-  font-weight: bold;
-  position: absolute;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} */
-
-.modal-dialog {
-  max-width: 100%;
-  margin: 0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  display: flex;
 }
 </style>

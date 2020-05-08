@@ -118,16 +118,19 @@ export default {
 <style scoped>
 .editor {
   display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
   width: 100%;
   background-color: rgb(190, 204, 204);
 }
 
 .imageContainer {
+  display: inline-block;
   position: relative;
   margin-right: 25px;
   left: 0;
   top: 0;
-  width: 50%;
+  width: 60%;
 }
 
 .ImageToEdit {
@@ -169,5 +172,20 @@ export default {
   margin: 20px 0;
   width: 100%;
   flex-grow: 1;
+}
+
+@media only screen and (max-width: 1000px) {
+  .editor {
+    display: inline-block;
+  }
+
+  .imageContainer {
+    width: 100%;
+  }
+
+  .editPanel {
+    margin: 0 10px;
+    margin-left: 10px;
+  }
 }
 </style>
